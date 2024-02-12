@@ -60,7 +60,7 @@
 - Para cambiar el nombre de la rama
 
   - `git branch -m <nombre actual> <nombre nuevo>` por ejemplo `git branch -m master main`
-- Para hacer un commit de archivos que ya estan siendo rastreados sin tener que escribir el "add"
+- Para hacer un commit de archivos MODIFICADOS sin tener que escribir el "add" (no funciona con archivos UNTRACKED solo MODIFIED)
 
   - `git commit -am <el mensaje>`
   - NO FUNCIONA CON ARCHIVOS NUEVOS QUE AUN NO ESTAN SIENDO RASTREADOS
