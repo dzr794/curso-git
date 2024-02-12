@@ -52,3 +52,24 @@
  - Comando para reconstruir el proyecto a como estaba en el ultimo commit
    - `git checkout -- .`
    - TENER EN CUENTA QUE A LAS CARPETAS VACIAS NO SE LES HACE SEGUIMIENTO!
+
+## ¿Cómo subir un proyecto local a un repositorio nuevo?
+  1. Primero, navega a la carpeta que deseas subir utilizando la línea de comandos. Puedes hacerlo con el comando cd, por ejemplo:
+  `cd ruta/a/tu/carpeta`
+
+  2. Inicializa un nuevo repositorio de Git en esa carpeta con el comando git init:
+  `git init`
+
+  3. Agrega todos los archivos en la carpeta al repositorio con el comando git add:
+  `git add .`
+
+  4. Haz un commit de los archivos con el comando git commit. Asegúrate de agregar un mensaje de commit descriptivo:
+  `git commit -m "Mi primer commit"`
+
+  5. Ve a GitHub y crea un nuevo repositorio. No inicialices el repositorio con un README, .gitignore o License. Solo dale un nombre y haz clic en “Create repository”.
+  6. En la página de tu nuevo repositorio, copia la URL del repositorio.
+  7. Vuelve a la línea de comandos y agrega la URL de tu repositorio como el “origin” remoto:
+  `git remote add origin tu_url_del_repositorio`
+
+  1. Finalmente, sube tus archivos al repositorio con el comando git push:
+  `git push -u origin main`
