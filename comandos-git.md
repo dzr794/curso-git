@@ -60,24 +60,27 @@
 ### Add
 
 - Para añadir seguimiento a archivos en el repositorio
-  - `git add "path or fileName"`
 
+  - `git add "path or fileName"`
 - Para añadir todos los cambios al "stage"
+
   - `git add .`
 
 ### Reset
 
 - Para eliminar el seguimiento de un archivo o directorio
+
   - `git reset "path or fileName"`
-  
 - Para eliminar el ultimo commit
+
   - `git reset --soft HEAD^`
     - `--soft` con el SOFT no se eliminan los cambios
-      `--mixed`
+      `--mixed` MIXED no es destructivo, saca todo del stage y queda todo listo para volver a ser añadido.
       `--hard` con el HARD se eliminaran los cambios
-    - `HEAD^`: Apunta al hash del ultimo commit
-    `HEAD^2`:Apunta al PENULTIMO commit,
-    del mismo modo `HEAD^3` apuntara al commit anterior a este.
+    - `HEAD`: HEAD siempre apunta al ultimo commit
+      `HEAD^`: Apunta al hash anterior al ultimo commit
+      `HEAD^2`:Apunta al hash que del commit que se encuentra 2 puestos atras del HEAD,
+      del mismo modo `HEAD^3` apuntara al commit anterior a este.
 
 ### Checkout
 
@@ -88,21 +91,23 @@
 ### Branch
 
 - Para ver el nombre de la rama actual
-  - `git branch`
 
+  - `git branch`
 - Para cambiar el nombre de la rama
+
   - `git branch -m "nombre actual" "nombre nuevo"` por ejemplo `git branch -m master main`
 
 ### Commit
 
 - Para "tomar la fotografia" de el estado actual del repositorio
+
   - `git commit -m "mensaje descriptivo corto"`
-  
 - Para hacer un commit de archivos MODIFICADOS sin tener que escribir el "add" (no funciona con archivos UNTRACKED solo MODIFIED)
+
   - `git commit -am "el mensaje"`
   - NO FUNCIONA CON ARCHIVOS NUEVOS QUE AUN NO ESTAN SIENDO RASTREADOS
-
 - Para modificar el mensaje del ultimo commit (--amend)
+
   - `git commit --amend -m "mensaje corregido"`
 
 ### Log
@@ -110,6 +115,21 @@
 - Para mostrar el registro de todos los commits
   - `git log`
 
+### reflog
+
+- Muestra el historial de todo lo que se ha hecho con git
+  - `git reflog`
+    - se pueden utilizar los hash de los commits encontremos en este registro para retomar/reconstruir commit anteriores a pesar de que se hayan realizador procesos "destructivos" con reset --hard `git reset --hard <commit_hash>`, incluso se puede volver a un punto anterior a un merge de ramas.
+
+### Move / Rename
+
+- Se puede mover de lugar un archivo o renombrarlo si se deja en la misma ubicación pero con otro nombre
+  - `git mv "archivo viejo.abc" "archivo nuevo.abc"`
+
+### eliminar archivo
+
+- Se pueden eliminar archivos con `git rm`
+  - `git rm "nombre archivo.abc"`
 
 ## Creando alias
 
