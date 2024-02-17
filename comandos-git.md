@@ -46,11 +46,21 @@
 5. Ve a GitHub y crea un nuevo repositorio. No inicialices el repositorio con un README, .gitignore o License. Solo dale un nombre y haz clic en “Create repository”.
 6. En la página de tu nuevo repositorio, copia la URL del repositorio.
 7. Vuelve a la línea de comandos y agrega la URL de tu repositorio como el “origin” remoto:
-   `git remote add origin tu_url_del_repositorio`
+   `git remote add origin <tu_url_del_repositorio>`
 8. Finalmente, sube tus archivos al repositorio con el comando git push:
    `git push -u origin main`
 
 ## Comandos básicos
+
+### Renombrar Branch
+
+- Para renombrar la rama actual:
+  - `git branch -m <newname>`
+
+- Para renombrar una rama mientras apunta a cualquier rama:
+  - `git branch -m <oldname> <newname>`
+
+__*-m* is short for  *--move* .__
 
 ### Status
 
@@ -109,6 +119,9 @@
 - Para modificar el mensaje del ultimo commit (--amend)
 
   - `git commit --amend -m "mensaje corregido"`
+- Para ver información detallada de un commit
+
+  - `git show <hash-del-commit>`
 
 ### Log
 
@@ -131,6 +144,37 @@
 - Se pueden eliminar archivos con `git rm`
   - `git rm "nombre archivo.abc"`
 
+### tags
+
+Los tag son muy utiles para etiquetar commits importantes de las apps como por el ejmplo diferencias los versionamientos, los realeases, etc.
+
+* Para crear un tag es necesario usar el siguiente comando
+  * `git tag <nombre-del-tag>`
+    * este comando añadira un tag en ek ultimo commit realizado (o el HEAD)
+* para crear un tag en un commit anterior es necesario especificarlo
+  * `git tag -a <nombre-del-tag> <hash-del-commit> -m "descripción del tag"`
+* Para eliminar un tag
+  * `git tag -d <nombre-del-tag>`
+* Para ver la lista de tags
+  * `git tag`
+* Para ver información detallada de un tag especifico
+  * `git show <nombre-del-tag>`
+
+### Stash
+
+Es algo así como una caja fuerte donde se almacenan cambios de forma segura para continuarlos después.
+
+* Para almacenar los cambios que se han hecho desde el ultimo commit en el STASH
+
+  * `git stash`
+  * Esto se mostrara en el log con la para clave WIP (Work In Progress)
+* Para ver la lista de stashe
+
+  * `git stash list`
+* Para retomar la edicion de el __stash en la posicio 0__
+
+  * `git stash pop`
+
 ## Creando alias
 
 ### Status
@@ -142,4 +186,33 @@
 
 * Para un `git log` mas visual
 * `git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"`
-*
+
+## Submodulos
+
+Los submodulos son repositorios que viven dentro de un repositorio (el 'superproyecto')
+
+Para añadir un submodulo primero ese repositorio debe de existir en un repositorio remoto de github para poder ingresar la URL en el comando:
+`git submodule add <url> <submodule-path>`
+
+### Agregar un submodulo
+
+Para agregar un submodulo se debe usar el código
+`git submodule add <url> <submodule-path>`
+
+### Configuración recursiva de los modulos
+
+En el momento en el que hace un comando push/pull o otros en el superproyecto este puede ser recursivo o no y se decide con la inclusión de la bandera "--recurse-submodules"
+`git <command> --recurse-submodules`
+
+En el caso de que se desee que siempre sea recursivo se puede cambiar la configuración del superproyecto con este código.
+`git config submodule.recurse true`
+
+### En caso de que se clone un superproyecto
+
+Para que traiga todo el contenido de los submodulos es necesario usar la bandera "--recurse-submodules"
+`git clone <repository-URL> --recurse-submodules`
+
+en caso de que no se use se traera unicamente la carpeta de los submodulos pero estaran vacias.
+
+se puede traer el contenido de estos módulos vacíos con este código.
+`git submodule update --init`

@@ -1,0 +1,24 @@
+[submodule "01-bases"]
+  active = true
+  path = 01-bases
+  url = https://github.com/dzr794/cursoGit-01Bases
+[submodule "02-bases"]
+  active = true
+  path = 02-bases
+  url = https://github.com/dzr794/cursoGit-02Bases
+[submodule "04-materia-heroes"]
+  active = true
+  path = 04-materia-heroes
+  url = https://github.com/dzr794/cursoGit-04MateriaHeroes
+[submodule "05-tarea"]
+  active = true
+  path = 05-tarea
+  url = https://github.com/dzr794/cursoGit-05Tarea
+[submodule "06-demo"]
+  active = true
+  path = 06-demo
+  url = https://github.com/dzr794/cursoGit-06Demo
+[submodule "07-demo-stash"]
+  active = true
+  path = 07-demo-stash
+  url = https://github.com/dzr794/cursoGit-07DemoStash
