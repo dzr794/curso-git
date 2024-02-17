@@ -226,7 +226,7 @@ Para agregar un submodulo se debe usar el código
 ### Configuración recursiva de los modulos
 
 En el momento en el que hace un comando push/pull o otros en el superproyecto este puede ser recursivo o no y se decide con la inclusión de la bandera "--recurse-submodules"
-`git <command> --recurse-submodules`
+`git <command> --recurse-submodules `
 
 En el caso de que se desee que siempre sea recursivo se puede cambiar la configuración del superproyecto con este código.
 `git config submodule.recurse true`
@@ -251,7 +251,7 @@ hagamos de cuenta que tenemos la rama 'main' y una rama adicional llamada 'otra'
 
 podemos usar:
 
-``` console
+```console
 git checkout otra
 git rebase main
 ```
@@ -276,5 +276,3 @@ Esto crearía un area temporal donde se almacenan los últimos 3 commits y luego
 - Corregir mensajes en los commits
 - Unir Commits
 - Separar Commits
-
-
