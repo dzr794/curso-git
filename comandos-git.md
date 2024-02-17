@@ -25,7 +25,7 @@
   - `find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch`
 - para creat un .gitignore global que ignore siempre los .DS_Store
 
-  ```
+  ```console
   echo ".DS_Store" " ~/.gitignore_global
   echo "._.DS_Store" " ~/.gitignore_global
   echo "**/.DS_Store" " ~/.gitignore_global
@@ -55,9 +55,10 @@
 ### Renombrar Branch
 
 - Para renombrar la rama actual:
-  - `git branch -m <newname>`
 
+  - `git branch -m <newname>`
 - Para renombrar una rama mientras apunta a cualquier rama:
+
   - `git branch -m <oldname> <newname>`
 
 __*-m* is short for  *--move* .__
@@ -148,44 +149,67 @@ __*-m* is short for  *--move* .__
 
 Los tag son muy utiles para etiquetar commits importantes de las apps como por el ejmplo diferencias los versionamientos, los realeases, etc.
 
-* Para crear un tag es necesario usar el siguiente comando
-  * `git tag <nombre-del-tag>`
-    * este comando añadira un tag en ek ultimo commit realizado (o el HEAD)
-* para crear un tag en un commit anterior es necesario especificarlo
-  * `git tag -a <nombre-del-tag> <hash-del-commit> -m "descripción del tag"`
-* Para eliminar un tag
-  * `git tag -d <nombre-del-tag>`
-* Para ver la lista de tags
-  * `git tag`
-* Para ver información detallada de un tag especifico
-  * `git show <nombre-del-tag>`
+- Para crear un tag es necesario usar el siguiente comando
+  - `git tag <nombre-del-tag>`
+    - este comando añadira un tag en ek ultimo commit realizado (o el HEAD)
+- para crear un tag en un commit anterior es necesario especificarlo
+  - `git tag -a <nombre-del-tag> <hash-del-commit> -m "descripción del tag"`
+- Para eliminar un tag
+  - `git tag -d <nombre-del-tag>`
+- Para ver la lista de tags
+  - `git tag`
+- Para ver información detallada de un tag especifico
+  - `git show <nombre-del-tag>`
 
 ### Stash
 
 Es algo así como una caja fuerte donde se almacenan cambios de forma segura para continuarlos después.
 
-* Para almacenar los cambios que se han hecho desde el ultimo commit en el STASH
+Lo recomendable es manejar un unico stash, pero es posible tener multiples stash.
 
-  * `git stash`
-  * Esto se mostrara en el log con la para clave WIP (Work In Progress)
-* Para ver la lista de stashe
+Los stashes deben de ser considerados como un almacenamiento temporal y ser limpiados despues de cada sesión e trabajo o ser correctamente descriptos para evitar problemas y dolores de cabeza.
 
-  * `git stash list`
-* Para retomar la edicion de el __stash en la posicio 0__
+- Para almacenar los cambios que se han hecho desde el ultimo commit en el STASH
 
-  * `git stash pop`
+  - `git stash`
+  - Esto se mostrara en el log con la para clave WIP (Work In Progress)
+- Para almacenar los cambios al stash PERO CON UN NOMBRE (algo así como un mensaje del commit)
+
+  - `git stash save "mensaje descriptivo del stash para evitar dolores de cabeza"`
+- Para ver la lista de stash
+
+  - `git stash list`
+    - si agregamos la bandera `--stat` podremos ver descripciones de cada stash en la lista
+- Para retomar la edición de el **stash en la posición 0**
+
+  - `git stash pop`
+- Para eliminar todos los stash
+
+  - `git stash clear`
+- Para eliminar un stash especifico
+
+  - `git stash drop <nombre-del-stash>`
+    - Para este caso el nombre seria algo como *stash@{0}* o *stash@{1}* o *stash@{2}* o uno similar, dependiendo de lo que muestre el `git stash list`
+- Para ver los camibos que hay guardados en un stash especifico sin eliminarlo de la lista (apply)
+
+  - `git stash apply <nombre-del-stash>`
+    - Para este caso el nombre seria algo como *stash@{0}* o *stash@{1}* o *stash@{2}* o uno similar, dependiendo de lo que muestre el `git stash list`
+- Para ver que archivo y cuantas lineas se modifican en cada stash (descripción vaga)
+
+  - `git stash show <nombre-del-stash>`
+    - Para este caso el nombre seria algo como *stash@{0}* o *stash@{1}* o *stash@{2}* o uno similar, dependiendo de lo que muestre el `git stash list`
 
 ## Creando alias
 
-### Status
+### Status con alias 'git s'
 
-* Para escribir mas rapido el `git status`
-  * `git config --global alias.s "status --short"` o `git config --global alias.s "status -sb"`
+- Para escribir mas rapido el `git status`
+  - `git config --global alias.s "status --short"` o `git config --global alias.s "status -sb"`
 
-### Log
+### Log con alias 'git lg'
 
-* Para un `git log` mas visual
-* `git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"`
+- Para un `git log` mas visual
+- `git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"`
 
 ## Submodulos
 
@@ -216,3 +240,41 @@ en caso de que no se use se traera unicamente la carpeta de los submodulos pero 
 
 se puede traer el contenido de estos módulos vacíos con este código.
 `git submodule update --init`
+
+## Rebase
+
+### Rebase normal
+
+El rebase nos permite cambiar el lugar donde se origino un commit?
+
+hagamos de cuenta que tenemos la rama 'main' y una rama adicional llamada 'otra' ynecesitamos que la rama 'otra' se actualice con unos commits que se hicieron en 'master' DESPUES de el lugar de donde se bifurco, ¿Cómo podriamos actualizar la rama 'otra' con los ultimos commits de 'main'?
+
+podemos usar:
+
+``` console
+git checkout otra
+git rebase main
+```
+
+lo que haría este código es:
+
+- poner cada uno de los commits de la rama 'otra' en un area temporal
+- mover el puntero de la rama 'otra' al ultimo commit de la rama 'main'
+- va a regresar los commits que estaban en el area temporal a la rama 'otra'
+
+### Rebase interactivo
+
+`git rebase -i HEAD~<numeroDeCommitsHaciaAtrás>`
+
+por ejemplo: `git rebase -i HEAD~3` haria un rebase interactivo con los últimos 3 commits.
+
+Esto crearía un area temporal donde se almacenan los últimos 3 commits y luego los re ingresa en el orden en que hayan ingresado al area temporal
+
+#### Usos más comunes del rebase interactivo
+
+- Ordenar commits
+- Corregir mensajes en los commits
+- Unir Commits
+- Separar Commits
+
+

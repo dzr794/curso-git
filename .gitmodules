@@ -22,3 +22,7 @@
   active = true
   path = 07-demo-stash
   url = https://github.com/dzr794/cursoGit-07DemoStash
+[submodule "08-demo-rebase"]
+  active = true
+  path = 08-demo-rebase
+  url = https://github.com/dzr794/cursoGit-08demoRebase
