@@ -52,6 +52,10 @@
 
 ## Comandos básicos
 
+### Reversar los cambios de un archivo antes del add
+
+Podemos usar `git checkout -- <nombre-del-archivo>` para reversar todo los cambios hechos en este archivo. y que quede como estaba ne el ultimo commit.
+
 ### Renombrar Branch
 
 - Para renombrar la rama actual:
@@ -226,7 +230,7 @@ Para agregar un submodulo se debe usar el código
 ### Configuración recursiva de los modulos
 
 En el momento en el que hace un comando push/pull o otros en el superproyecto este puede ser recursivo o no y se decide con la inclusión de la bandera "--recurse-submodules"
-`git <command> --recurse-submodules `
+`git <command> --recurse-submodule (check|on-demand|only|no)`
 
 En el caso de que se desee que siempre sea recursivo se puede cambiar la configuración del superproyecto con este código.
 `git config submodule.recurse true`
@@ -234,7 +238,7 @@ En el caso de que se desee que siempre sea recursivo se puede cambiar la configu
 ### En caso de que se clone un superproyecto
 
 Para que traiga todo el contenido de los submodulos es necesario usar la bandera "--recurse-submodules"
-`git clone <repository-URL> --recurse-submodules`
+`git clone <repository-URL> --recurse-submodule ()`
 
 en caso de que no se use se traera unicamente la carpeta de los submodulos pero estaran vacias.
 
@@ -270,9 +274,28 @@ por ejemplo: `git rebase -i HEAD~3` haria un rebase interactivo con los últimos
 
 Esto crearía un area temporal donde se almacenan los últimos 3 commits y luego los re ingresa en el orden en que hayan ingresado al area temporal
 
+**Al realizar un rebase interactivo con los ultimos (por ejemplo 4 commits) nos aparecera una nueva vista en la consola que nos muestra una lista de los commits elegidos, al inicio de cada uno habra una palabra clave que determina que se hace con cada una (por defecto es 'pick' o 'p') y abajo de la lista nos mostrará una lista de palabras clave que podremos usar como ayuda para saber que hacer con cada uno de los commits elegidos en el rebase.**
+
+![1708140142978](image/comandos-git/1708140142978.png)
+
 #### Usos más comunes del rebase interactivo
 
 - Ordenar commits
 - Corregir mensajes en los commits
 - Unir Commits
 - Separar Commits
+
+#### SQUASH
+
+si usamos la palabra 'squash' o 's' como comando al inicio un commit, combinará ese commit junto con el anterior (OJO, si se usa el squash en mas de 1 commit entonces se combinaran mas de 2 commits)
+
+![1708140208282](image/comandos-git/1708140208282.png)
+en este caso se hace un squash (union de 2 commits) con los ultimos 2 commits.
+
+#### REWORD
+
+si usamos la palabra 'reword' o 'r' como comando al inicio un commit, cambiaremos el mensaje de cada uno de los commits a los que le hayamos puesto esta palabra.
+
+#### EDIT
+
+si usamos la palabra 'edit' o 'e' como comando al inicio un commit, entraremos al modo rebase manual permitiendonos usar `git reset HEAD^` o  de ese modo podremos separar los commmits en los que usamos 'edit' en varias partes, por ejemplos separar la edicion de 2 archivos en 2 commits diferentes añadiendo cada uno por separado con `git add <nombre-archivo>` y `git commit -m "el mensaje"` y luego añadir los archivos restantes y hacer commit. Al finalizar la separación de estos commits __ES IMPORTANTE FINALIZAR CON `git rebase --continue` para continuar el rebase__ o finalizarlo en caso de que sea el ultimo.
