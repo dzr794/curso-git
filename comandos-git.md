@@ -136,6 +136,38 @@ Con `rm` podemos quitar un archivo del _stage_ en caso de que se haya agregado p
   - `git checkout -- .`
   - TENER EN CUENTA QUE A LAS CARPETAS VACIAS NO SE LES HACE SEGUIMIENTO!
 
+
+### Push
+
+El comando inicial que se usa para hacer un push a un repositorio remoto es
+
+`git retome add <name> <remote-repo-url>`
+
+* `<name>` suele tener el  nombre de origin pero puede ser cualquier otro nombre
+* `<remote-repo-url>` debe ser la URL de un repositorio remoto previamente creado
+* se pueden añadir mas de un repositorio remoto al repositorio local y para eso se le ponen diferentes `<name>` a cada url remota añadida
+
+El siguiente comando es
+
+`git push -u <remote-name> <branch-name>`
+
+* `-u` es el corto de `--set-upstream` y lo que hace es que estamos definiendo el remote y la branch por defecto para cada push, de modo que la siguiente vez solo sea necesario usar `git push` sin especificar el remote ni la rama, sin embargo se pueden especificar si no se desea hacer push a el remote/branch por defecto.
+* `<remote-name>` suele ser "origin"
+* `<brancg-name>` suele ser "main"
+
+### Fetch
+
+Se puede utilizar un `git fetch` antes de realizar un `git pull` para previsualizar el historial de cambios antes de unir el repositorio remoto con tu repositorio local.
+
+### Pull
+
+El comando *pull* realiza 2 comando juntos:
+
+1. git fetch
+2. git merge / git rebase
+
+Por lo general, se deben realizar estos dos pasos manualmente, al menos hasta que conozca Git lo suficientemente bien como para que cuando cualquiera de los pasos falle, que eventualmente lo harán, usted reconozca lo que salió mal y sepa qué hacer al respecto.
+
 ### Branch
 
 - Para ver el nombre de la rama actual
@@ -144,6 +176,16 @@ Con `rm` podemos quitar un archivo del _stage_ en caso de que se haya agregado p
 - Para cambiar el nombre de la rama
 
   - `git branch -m "nombre actual" "nombre nuevo"` por ejemplo `git branch -m master main`
+- Para eliminar una rama local usamos
+
+  - `git branch -d <branch-name>`
+- Para eliminar una rama REMOTA
+
+  - `git push <origin/remote-name> :<branch-name>`
+
+### Prune
+
+Se puede utilizar `git remote prune origin` para que git elimine localmente cualquier referencia del repositorio remoto que no pueda ser alcanzada.
 
 ### Commit
 
@@ -160,6 +202,10 @@ Con `rm` podemos quitar un archivo del _stage_ en caso de que se haya agregado p
 - Para ver información detallada de un commit
 
   - `git show <hash-del-commit>`
+- Se pueden resolver ISSUES desde consola atraves de un commit
+- `git commit -m "Fixes #<n>: el resto del mensaje"`
+
+  - la parte mas relevante de este codigo es `Fixes #<n>:` en donde se debe reemplazar '`<n>`' con el número del issues que muestra GitHub, por ejemplo un 5.
 
 ### Log
 
@@ -332,25 +378,3 @@ si usamos la palabra 'reword' o 'r' como comando al inicio un commit, cambiaremo
 #### EDIT
 
 si usamos la palabra 'edit' o 'e' como comando al inicio un commit, entraremos al modo rebase manual permitiendonos usar `git reset HEAD^` o  de ese modo podremos separar los commmits en los que usamos 'edit' en varias partes, por ejemplos separar la edicion de 2 archivos en 2 commits diferentes añadiendo cada uno por separado con `git add <nombre-archivo>` y `git commit -m "el mensaje"` y luego añadir los archivos restantes y hacer commit. Al finalizar la separación de estos commits __ES IMPORTANTE FINALIZAR CON `git rebase --continue` para continuar el rebase__ o finalizarlo en caso de que sea el ultimo.
-
-## Push
-
-El comando inicial que se usa para hacer un push a un repositorio remoto es
-
-`git retome add <name> <remote-repo-url>`
-
-* `<name>` suele tener el  nombre de origin pero puede ser cualquier otro nombre
-* `<remote-repo-url>` debe ser la URL de un repositorio remoto previamente creado
-* se pueden añadir mas de un repositorio remoto al repositorio local y para eso se le ponen diferentes `<name>` a cada url remota añadida
-
-El siguiente comando es
-
-`git push -u <remote-name> <branch-name>`
-
-* `-u` es el corto de `--set-upstream` y lo que hace es que estamos definiendo el remote y la branch por defecto para cada push, de modo que la siguiente vez solo sea necesario usar `git push` sin especificar el remote ni la rama, sin embargo se pueden especificar si no se desea hacer push a el remote/branch por defecto.
-* `<remote-name>` suele ser "origin"
-* `<brancg-name>` suele ser "main"
-
-## Fetch
-
-Se puede utilizar un `git fetch` antes de realizar un `git pull` para previsualizar el historial de cambios antes de unir el repositorio remoto con tu repositorio local.
