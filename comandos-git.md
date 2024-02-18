@@ -22,7 +22,9 @@
   - En este caso usaremos Fast-forward por defecto:
   - `git config --global pull.ff only`
   - En caso de que al hace un pull y hayan conflictos el fast-forward va a abortar y sera necesario cambiar la configuración del repositorio a: `git config pull.rebase true`
-  - 
+- Para una configuración mas amigable al resolver conflictos se recomienda usar "rebase":
+
+  - `git config --global pull.rebase true`
 - Para eliminar archivos o carpetas que ya estan siendo rastreadas en el repositorio
 
   - `git rm --cached "path or fileName"`
@@ -86,6 +88,13 @@ __*-m* is short for  *--move* .__
 - Para añadir todos los cambios al "stage"
 
   - `git add .`
+
+### Rm
+
+Con `rm` podemos quitar un archivo del _stage_ en caso de que se haya agregado por error y de ese modo realizar un *commit* mas preciso.
+
+* [ ] Usamos *--cached* para que el arichivo mantenga los cambios `git rm --cached <file-name>`.
+* [ ] Usamos *-f* para forzar la eliminación `git rm -f <file-name>`
 
 ### Reset
 
@@ -323,3 +332,7 @@ El siguiente comando es
 * `-u` es el corto de `--set-upstream` y lo que hace es que estamos definiendo el remote y la branch por defecto para cada push, de modo que la siguiente vez solo sea necesario usar `git push` sin especificar el remote ni la rama, sin embargo se pueden especificar si no se desea hacer push a el remote/branch por defecto.
 * `<remote-name>` suele ser "origin"
 * `<brancg-name>` suele ser "main"
+
+## Fetch
+
+Se puede utilizar un `git fetch` antes de realizar un `git pull` para previsualizar el historial de cambios antes de unir el repositorio remoto con tu repositorio local.
