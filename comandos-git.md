@@ -65,6 +65,7 @@
 Podemos usar `git checkout -- <nombre-del-archivo>` para reversar todo los cambios hechos en este archivo. y que quede como estaba ne el ultimo commit.
 
 ### Remote
+
   `git remote add <name> <remote-repo-link>`
 
 Por lo general el comando remote se utiliza para configurar **nuestro propio repositorio remoto** donde tenemos nuestro repositorio local
@@ -73,6 +74,7 @@ Esto agregaría una referencia a nuestro repositorio remoto con el nombre *origi
 
 Sin embargo si estamos trabajando con un repositorio remoto de otra persona al que le hicimos FORK lo mejor seria añadir el remote con nombre origin de nuestra copia de ese repositorio y ademas un remote con nombre 'upstream' (por estándar).
   `git remote add upstream <remote-repo-link>`
+  este repositorio que llamamos *upstream* **suele ser usado unicamente para realizar *pull*** y actualizar nuestro repositorio clonado con el repositorio del usuario original (el creador el repositorio al cual realizamos un fork).
 
 ### Branch
 
@@ -99,12 +101,18 @@ __*-m* is short for  *--move* .__
 
   - `git add .`
 
+### Restore
+
+Método para sacar archivos del stage
+
+`git restore --staged <fileName or path>`
+
 ### Rm
 
 Con `rm` podemos quitar un archivo del _stage_ en caso de que se haya agregado por error y de ese modo realizar un *commit* mas preciso.
 
-* [ ] Usamos *--cached* para que el arichivo mantenga los cambios `git rm --cached <file-name>`.
-* [ ] Usamos *-f* para forzar la eliminación `git rm -f <file-name>`
+* Usamos *--cached* para que el arichivo mantenga los cambios `git rm --cached <file-name>`.
+* Usamos *-f* para forzar la eliminación `git rm -f <file-name>`
 
 ### Reset
 
