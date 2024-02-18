@@ -17,6 +17,12 @@
 - Para corregir posible errores de CRLF (debo de estar ubicado en un repositorio git)
 
   - `git config core.autocrlf true`
+- Para que no aparezca un warning al hacer un pull preguntando si deseo usar rebase o fast-forward
+
+  - En este caso usaremos Fast-forward por defecto:
+  - `git config --global pull.ff only`
+  - En caso de que al hace un pull y hayan conflictos el fast-forward va a abortar y sera necesario cambiar la configuración del repositorio a: `git config pull.rebase true`
+  - 
 - Para eliminar archivos o carpetas que ya estan siendo rastreadas en el repositorio
 
   - `git rm --cached "path or fileName"`
@@ -299,3 +305,21 @@ si usamos la palabra 'reword' o 'r' como comando al inicio un commit, cambiaremo
 #### EDIT
 
 si usamos la palabra 'edit' o 'e' como comando al inicio un commit, entraremos al modo rebase manual permitiendonos usar `git reset HEAD^` o  de ese modo podremos separar los commmits en los que usamos 'edit' en varias partes, por ejemplos separar la edicion de 2 archivos en 2 commits diferentes añadiendo cada uno por separado con `git add <nombre-archivo>` y `git commit -m "el mensaje"` y luego añadir los archivos restantes y hacer commit. Al finalizar la separación de estos commits __ES IMPORTANTE FINALIZAR CON `git rebase --continue` para continuar el rebase__ o finalizarlo en caso de que sea el ultimo.
+
+## Push
+
+El comando inicial que se usa para hacer un push a un repositorio remoto es
+
+`git retome add <name> <remote-repo-url>`
+
+* `<name>` suele tener el  nombre de origin pero puede ser cualquier otro nombre
+* `<remote-repo-url>` debe ser la URL de un repositorio remoto previamente creado
+* se pueden añadir mas de un repositorio remoto al repositorio local y para eso se le ponen diferentes `<name>` a cada url remota añadida
+
+El siguiente comando es
+
+`git push -u <remote-name> <branch-name>`
+
+* `-u` es el corto de `--set-upstream` y lo que hace es que estamos definiendo el remote y la branch por defecto para cada push, de modo que la siguiente vez solo sea necesario usar `git push` sin especificar el remote ni la rama, sin embargo se pueden especificar si no se desea hacer push a el remote/branch por defecto.
+* `<remote-name>` suele ser "origin"
+* `<brancg-name>` suele ser "main"
