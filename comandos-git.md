@@ -64,7 +64,17 @@
 
 Podemos usar `git checkout -- <nombre-del-archivo>` para reversar todo los cambios hechos en este archivo. y que quede como estaba ne el ultimo commit.
 
-### Renombrar Branch
+### Remote
+  `git remote add <name> <remote-repo-link>`
+
+Por lo general el comando remote se utiliza para configurar **nuestro propio repositorio remoto** donde tenemos nuestro repositorio local
+  `git remote add origin <remote-repo-link>`
+Esto agregaría una referencia a nuestro repositorio remoto con el nombre *origin*
+
+Sin embargo si estamos trabajando con un repositorio remoto de otra persona al que le hicimos FORK lo mejor seria añadir el remote con nombre origin de nuestra copia de ese repositorio y ademas un remote con nombre 'upstream' (por estándar).
+  `git remote add upstream <remote-repo-link>`
+
+### Branch
 
 - Para renombrar la rama actual:
 
