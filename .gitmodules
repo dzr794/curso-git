@@ -26,3 +26,6 @@
   active = true
   path = 08-demo-rebase
   url = https://github.com/dzr794/cursoGit-08demoRebase
+[submodule "09-heroes"]
+	path = 09-heroes
+	url = https://github.com/dzr794/cursoGit-09Heroes.git
