@@ -206,6 +206,7 @@ Se puede utilizar `git remote prune origin` para que git elimine localmente cual
 - `git commit -m "Fixes #<n>: el resto del mensaje"`
 
   - la parte mas relevante de este codigo es `Fixes #<n>:` en donde se debe reemplazar '`<n>`' con el número del issues que muestra GitHub, por ejemplo un 5.
+  - luego de esto es necesario realizar un `git push`.
 
 ### Log
 
