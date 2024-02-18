@@ -32,3 +32,6 @@
 [submodule "10-legion-del-mal"]
 	path = 10-legion-del-mal
 	url = https://github.com/dzr794/10-legion-del-mal.git
+[submodule "11-avengers"]
+  path = 11-avengers
+  url = https://github.com/dzr794/cursoGit-10Avengers.git
