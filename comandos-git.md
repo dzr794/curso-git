@@ -136,7 +136,6 @@ Con `rm` podemos quitar un archivo del _stage_ en caso de que se haya agregado p
   - `git checkout -- .`
   - TENER EN CUENTA QUE A LAS CARPETAS VACIAS NO SE LES HACE SEGUIMIENTO!
 
-
 ### Push
 
 El comando inicial que se usa para hacer un push a un repositorio remoto es
@@ -310,7 +309,7 @@ Para agregar un submodulo se debe usar el código
 ### Configuración recursiva de los modulos
 
 En el momento en el que hace un comando push/pull o otros en el superproyecto este puede ser recursivo o no y se decide con la inclusión de la bandera "--recurse-submodules"
-`git <command> --recurse-submodule (check|on-demand|only|no)`
+`git <command> --recurse-submodules (check|on-demand|only|no)`
 
 En el caso de que se desee que siempre sea recursivo se puede cambiar la configuración del superproyecto con este código.
 `git config submodule.recurse true`
@@ -318,7 +317,7 @@ En el caso de que se desee que siempre sea recursivo se puede cambiar la configu
 ### En caso de que se clone un superproyecto
 
 Para que traiga todo el contenido de los submodulos es necesario usar la bandera "--recurse-submodules"
-`git clone <repository-URL> --recurse-submodule ()`
+`git clone <repository-URL> --recurse-submodules (check|on-demand|only|no)`
 
 en caso de que no se use se traera unicamente la carpeta de los submodulos pero estaran vacias.
 
